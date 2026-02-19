@@ -1,0 +1,453 @@
+export interface Product {
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    category: 'brakes' | 'engine' | 'suspension' | 'electrical' | 'maintenance' | 'batteries' | 'accessories' | 'cooling' | 'exhaust' | 'steering' | 'transmission';
+    image: string;
+    rating: number;
+    reviews: number;
+    inStock: boolean;
+    brand: string;
+    compatibility: string[];
+}
+
+export const products: Product[] = [
+    // Brakes
+    {
+        id: "br-001",
+        name: "Brembo Premium Ceramic Brake Pads (Front)",
+        description: "High-performance ceramic brake pads from Brembo, ensuring quiet braking and low dust. Ideal for daily driving and performance applications.",
+        price: 450.00,
+        category: "brakes",
+        image: "https://placehold.co/600x400/e31e24/ffffff?text=Brembo+Pads",
+        rating: 4.8,
+        reviews: 124,
+        inStock: true,
+        brand: "Brembo",
+        compatibility: ["Toyota Corolla 2018-2022", "Toyota Camry 2019-2023", "Honda Civic 2020-2024"]
+    },
+    {
+        id: "br-002",
+        name: "Bosch QuietCast Premium Disc Brake Rotor",
+        description: "Precision-balanced rotors for smooth operation and consistent braking performance. Coated for corrosion resistance.",
+        price: 650.00,
+        category: "brakes",
+        image: "https://placehold.co/600x400/003366/ffffff?text=Bosch+Rotor",
+        rating: 4.9,
+        reviews: 89,
+        inStock: true,
+        brand: "Bosch",
+        compatibility: ["Ford Mustang 2020", "Chevrolet Camaro 2021", "Honda Accord 2018-2022"]
+    },
+    {
+        id: "br-003",
+        name: "Akebono ProACT Ultra-Premium Brake Pads",
+        description: "OE-validated, application-specific ceramic formulations. The ultimate upgrade for semi-metallic and low-metallic brake pads.",
+        price: 520.00,
+        category: "brakes",
+        image: "https://placehold.co/600x400/333333/ffffff?text=Akebono+Pads",
+        rating: 4.9,
+        reviews: 210,
+        inStock: true,
+        brand: "Akebono",
+        compatibility: ["Nissan Altima 2016-2020", "Subaru Outback 2018-2022"]
+    },
+    {
+        id: "br-004",
+        name: "Power Stop Z23 Evolution Sport Brake Kit",
+        description: "Complete brake kit including drilled & slotted rotors and carbon-fiber ceramic brake pads.",
+        price: 1800.00,
+        category: "brakes",
+        image: "https://placehold.co/600x400/cc0000/ffffff?text=Power+Stop+Kit",
+        rating: 4.7,
+        reviews: 56,
+        inStock: true,
+        brand: "Power Stop",
+        compatibility: ["Dodge Challenger 2015-2023", "Dodge Charger 2015-2023"]
+    },
+
+    // Engine
+    {
+        id: "en-001",
+        name: "Mobil 1 Extended Performance 5W-30 Full Synthetic Motor Oil (5L)",
+        description: "Advanced full synthetic formula designed to keep your engine running like new. Protects for up to 20,000 miles between oil changes.",
+        price: 320.00,
+        category: "engine",
+        image: "https://placehold.co/600x400/bfa15f/000000?text=Mobil+1+Oil",
+        rating: 4.9,
+        reviews: 542,
+        inStock: true,
+        brand: "Mobil 1",
+        compatibility: ["Universal"]
+    },
+    {
+        id: "en-002",
+        name: "K&N High-Performance Air Filter",
+        description: "Washable and reusable air filter designed to increase horsepower and acceleration. Lasts up to 50,000 miles before cleaning.",
+        price: 280.00,
+        category: "engine",
+        image: "https://placehold.co/600x400/aa0000/ffffff?text=K%26N+Filter",
+        rating: 4.7,
+        reviews: 210,
+        inStock: true,
+        brand: "K&N",
+        compatibility: ["Toyota Tacoma 2019", "Toyota Tundra 2021", "Ford F-150 2018-2023"]
+    },
+    {
+        id: "en-003",
+        name: "NGK Iridium IX Spark Plug (4-Pack)",
+        description: "Designed specifically for the performance enthusiast. Iridium IX offers extreme ignitability, improved throttle response and superior anti-fouling.",
+        price: 240.00,
+        category: "engine",
+        image: "https://placehold.co/600x400/222222/ffffff?text=NGK+Plugs",
+        rating: 4.8,
+        reviews: 156,
+        inStock: true,
+        brand: "NGK",
+        compatibility: ["Honda Accord 2016-2022", "Nissan Altima 2018-2022", "Toyota Camry 2015-2023"]
+    },
+    {
+        id: "en-004",
+        name: "Mann-Filter Oil Filter",
+        description: "Premium oil filter with high dirt holding capacity and excellent filtration efficiency.",
+        price: 85.00,
+        category: "engine",
+        image: "https://placehold.co/600x400/00aa00/ffffff?text=Mann+Filter",
+        rating: 4.8,
+        reviews: 98,
+        inStock: true,
+        brand: "Mann-Filter",
+        compatibility: ["Volkswagen Golf 2015-2021", "Audi A4 2017-2023"]
+    },
+    {
+        id: "en-005",
+        name: "Gates Serpentine Belt",
+        description: "Heavy-duty V-ribbed belt designed for high mileage and reliability.",
+        price: 150.00,
+        category: "engine",
+        image: "https://placehold.co/600x400/000000/ffffff?text=Gates+Belt",
+        rating: 4.6,
+        reviews: 112,
+        inStock: true,
+        brand: "Gates",
+        compatibility: ["Ford Explorer 2016-2022", "Jeep Grand Cherokee 2015-2021"]
+    },
+
+    // Suspension
+    {
+        id: "su-001",
+        name: "KYB Excel-G Gas Strut (Front)",
+        description: "Restores factory handling and control. Twin-tube design with nitrogen gas charging.",
+        price: 550.00,
+        category: "suspension",
+        image: "https://placehold.co/600x400/cc0000/ffffff?text=KYB+Strut",
+        rating: 4.6,
+        reviews: 78,
+        inStock: true,
+        brand: "KYB",
+        compatibility: ["Toyota RAV4 2015-2021", "Honda CR-V 2017-2022"]
+    },
+    {
+        id: "su-002",
+        name: "Moog Control Arm and Ball Joint Assembly",
+        description: "Problem Solver product. Features durable construction and easy installation.",
+        price: 480.00,
+        category: "suspension",
+        image: "https://placehold.co/600x400/ffff00/000000?text=Moog+Arm",
+        rating: 4.7,
+        reviews: 45,
+        inStock: false,
+        brand: "Moog",
+        compatibility: ["Ford F-150 2015-2020", "Ram 1500 2013-2018"]
+    },
+    {
+        id: "su-003",
+        name: "Bilstein B6 Performance Shock Absorber",
+        description: "Gas-pressure shock absorber designed for improved handling and stability.",
+        price: 720.00,
+        category: "suspension",
+        image: "https://placehold.co/600x400/ffff00/0000cc?text=Bilstein+Shock",
+        rating: 4.9,
+        reviews: 34,
+        inStock: true,
+        brand: "Bilstein",
+        compatibility: ["BMW 3 Series 2012-2018", "Mercedes C-Class 2015-2021"]
+    },
+
+    // Electrical
+    {
+        id: "el-001",
+        name: "Philips X-tremeVision Pro150 Headlight Bulbs (H11)",
+        description: "Up to 150% brighter light for better visibility and safety.",
+        price: 280.00,
+        category: "electrical",
+        image: "https://placehold.co/600x400/0000aa/ffffff?text=Philips+Bulbs",
+        rating: 4.5,
+        reviews: 312,
+        inStock: true,
+        brand: "Philips",
+        compatibility: ["Universal"]
+    },
+    {
+        id: "el-002",
+        name: "Denso Alternator 130 Amp",
+        description: "Original equipment quality part. Remanufactured to strict specifications.",
+        price: 1100.00,
+        category: "electrical",
+        image: "https://placehold.co/600x400/dd0000/ffffff?text=Denso+Alternator",
+        rating: 4.9,
+        reviews: 32,
+        inStock: true,
+        brand: "Denso",
+        compatibility: ["Jeep Wrangler 2012-2018", "Dodge Charger 2015-2023"]
+    },
+    {
+        id: "el-003",
+        name: "Bosch Starter Motor",
+        description: "100% new starter motor built to withstand extreme heat and cold.",
+        price: 950.00,
+        category: "electrical",
+        image: "https://placehold.co/600x400/003366/ffffff?text=Bosch+Starter",
+        rating: 4.8,
+        reviews: 45,
+        inStock: true,
+        brand: "Bosch",
+        compatibility: ["Volkswagen Jetta 2015-2021", "Audi A3 2016-2022"]
+    },
+
+    // Batteries
+    {
+        id: "ba-001",
+        name: "Optima RedTop AGM Battery (Group 35)",
+        description: "High-performance AGM battery with strong starting power and vibration resistance.",
+        price: 1800.00,
+        category: "batteries",
+        image: "https://placehold.co/600x400/dd0000/ffffff?text=Optima+RedTop",
+        rating: 4.8,
+        reviews: 204,
+        inStock: true,
+        brand: "Optima",
+        compatibility: ["Mazda CX-5 2017-2023", "Subaru Outback 2015-2023"]
+    },
+    {
+        id: "ba-002",
+        name: "DieHard Platinum AGM Battery",
+        description: "Reliable power in all weather conditions. Maintenance-free design.",
+        price: 1600.00,
+        category: "batteries",
+        image: "https://placehold.co/600x400/000000/ffffff?text=DieHard+Battery",
+        rating: 4.7,
+        reviews: 156,
+        inStock: true,
+        brand: "DieHard",
+        compatibility: ["Ford F-150 2018-2023", "Chevrolet Silverado 2019-2023"]
+    },
+
+    // Maintenance
+    {
+        id: "ma-001",
+        name: "Rain-X Latitude Water Repellency Wiper Blades (22\")",
+        description: "2-in-1 wiper blade that clears and repels water. Beam blade technology.",
+        price: 150.00,
+        category: "maintenance",
+        image: "https://placehold.co/600x400/ffcc00/000000?text=Rain-X+Wiper",
+        rating: 4.6,
+        reviews: 890,
+        inStock: true,
+        brand: "Rain-X",
+        compatibility: ["Universal"]
+    },
+    {
+        id: "ma-002",
+        name: "Meguiar's Ultimate Wash & Wax",
+        description: "Premium car wash soap that cleans and boosts wax protection in one step.",
+        price: 85.00,
+        category: "maintenance",
+        image: "https://placehold.co/600x400/aa0033/ffffff?text=Meguiars+Wash",
+        rating: 4.9,
+        reviews: 450,
+        inStock: true,
+        brand: "Meguiar's",
+        compatibility: ["Universal"]
+    },
+
+    // Cooling system
+    {
+        id: "co-001",
+        name: "Prestone Antifreeze/Coolant (Gallon)",
+        description: "Compatible with all vehicles. Protects against freezing, overheating, and corrosion.",
+        price: 120.00,
+        category: "cooling",
+        image: "https://placehold.co/600x400/ffff00/000000?text=Prestone+Coolant",
+        rating: 4.8,
+        reviews: 450,
+        inStock: true,
+        brand: "Prestone",
+        compatibility: ["Universal"]
+    },
+    {
+        id: "co-002",
+        name: "Mishimoto Performance Radiator",
+        description: "All-aluminum radiator designed for increased cooling efficiency and durability.",
+        price: 1250.00,
+        category: "cooling",
+        image: "https://placehold.co/600x400/cccccc/000000?text=Mishimoto+Radiator",
+        rating: 4.7,
+        reviews: 23,
+        inStock: true,
+        brand: "Mishimoto",
+        compatibility: ["Subaru WRX 2015-2021", "Ford Mustang 2015-2023"]
+    },
+    {
+        id: "co-003",
+        name: "Gates Water Pump",
+        description: "Original equipment quality water pump ensuring optimal coolant circulation.",
+        price: 340.00,
+        category: "cooling",
+        image: "https://placehold.co/600x400/000000/ffffff?text=Gates+Water+Pump",
+        rating: 4.6,
+        reviews: 67,
+        inStock: true,
+        brand: "Gates",
+        compatibility: ["Toyota Camry 2012-2017", "Honda Accord 2013-2017"]
+    },
+
+    // Exhaust
+    {
+        id: "ex-001",
+        name: "MagnaFlow Street Series Performance Exhaust",
+        description: "Stainless steel cat-back exhaust system for improved sound and performance.",
+        price: 3500.00,
+        category: "exhaust",
+        image: "https://placehold.co/600x400/999999/000000?text=MagnaFlow+Exhaust",
+        rating: 4.8,
+        reviews: 45,
+        inStock: true,
+        brand: "MagnaFlow",
+        compatibility: ["Ford Mustang GT 2018-2023"]
+    },
+    {
+        id: "ex-002",
+        name: "Walker Quiet-Flow SS Muffler",
+        description: "Direct-fit muffler providing factory-like sound and corrosion resistance.",
+        price: 450.00,
+        category: "exhaust",
+        image: "https://placehold.co/600x400/bbbbbb/000000?text=Walker+Muffler",
+        rating: 4.5,
+        reviews: 120,
+        inStock: true,
+        brand: "Walker",
+        compatibility: ["Honda CR-V 2012-2016", "Toyota RAV4 2013-2018"]
+    },
+
+    // Transmission
+    {
+        id: "tr-001",
+        name: "Exedy OEM Replacement Clutch Kit",
+        description: "Includes clutch disc, pressure plate, and release bearing. direct OE replacement.",
+        price: 1100.00,
+        category: "transmission",
+        image: "https://placehold.co/600x400/cc00cc/ffffff?text=Exedy+Clutch",
+        rating: 4.7,
+        reviews: 89,
+        inStock: true,
+        brand: "Exedy",
+        compatibility: ["Honda Civic Si 2012-2015", "Subaru Impreza 2012-2016"]
+    },
+    {
+        id: "tr-002",
+        name: "Valvoline MaxLife Multi-Vehicle ATF (1 Gallon)",
+        description: "Full synthetic transmission fluid for high-mileage vehicles.",
+        price: 180.00,
+        category: "transmission",
+        image: "https://placehold.co/600x400/000088/ffffff?text=Valvoline+ATF",
+        rating: 4.9,
+        reviews: 340,
+        inStock: true,
+        brand: "Valvoline",
+        compatibility: ["Universal"]
+    },
+
+    // Steering
+    {
+        id: "st-001",
+        name: "Cardone Remanufactured Rack and Pinion",
+        description: "Restores steering performance. 100% computerized hydraulic testing.",
+        price: 1400.00,
+        category: "steering",
+        image: "https://placehold.co/600x400/333333/ffffff?text=Cardone+Rack",
+        rating: 4.4,
+        reviews: 28,
+        inStock: true,
+        brand: "Cardone",
+        compatibility: ["Ford F-150 2009-2014", "Chevrolet Silverado 2007-2013"]
+    },
+    {
+        id: "st-002",
+        name: "Moog Tie Rod End",
+        description: "Patented cover plate design allows for tighter tolerances and longer life.",
+        price: 90.00,
+        category: "steering",
+        image: "https://placehold.co/600x400/ffff00/000000?text=Moog+Tie+Rod",
+        rating: 4.7,
+        reviews: 156,
+        inStock: true,
+        brand: "Moog",
+        compatibility: ["Universal"]
+    },
+
+    // Accessories
+    {
+        id: "ac-001",
+        name: "WeatherTech FloorLiner HP (Front & Rear)",
+        description: "Laser-measured for a custom fit. Protects your vehicle's carpet from mud, sand, and spills.",
+        price: 950.00,
+        category: "accessories",
+        image: "https://placehold.co/600x400/333333/ffffff?text=WeatherTech+Mats",
+        rating: 4.9,
+        reviews: 1240,
+        inStock: true,
+        brand: "WeatherTech",
+        compatibility: ["Toyota Highlander 2020-2023", "Ford Explorer 2020-2023"]
+    },
+    {
+        id: "ac-002",
+        name: "Thule WingBar Evo Roof Rack System",
+        description: "Aerodynamic and quiet roof rack system for carrying bikes, kayaks, and cargo boxes.",
+        price: 3200.00,
+        category: "accessories",
+        image: "https://placehold.co/600x400/cccccc/000000?text=Thule+Roof+Rack",
+        rating: 4.8,
+        reviews: 85,
+        inStock: true,
+        brand: "Thule",
+        compatibility: ["Universal - with vehicle specific feet"]
+    },
+    {
+        id: "ac-003",
+        name: "Garmin Dash Cam Mini 2",
+        description: "Tiny, reliable dash camera with 1080p recording, voice control, and automatic incident detection.",
+        price: 850.00,
+        category: "accessories",
+        image: "https://placehold.co/600x400/000000/ffffff?text=Garmin+Dash+Cam",
+        rating: 4.6,
+        reviews: 450,
+        inStock: true,
+        brand: "Garmin",
+        compatibility: ["Universal"]
+    },
+    {
+        id: "ac-004",
+        name: "NOCO Boost Plus GB40 Jump Starter",
+        description: "1000 Amp 12V UltraSafe Lithium Jump Starter for up to 6L gasoline and 3L diesel engines.",
+        price: 680.00,
+        category: "accessories",
+        image: "https://placehold.co/600x400/222222/ffffff?text=NOCO+Boost",
+        rating: 4.9,
+        reviews: 3200,
+        inStock: true,
+        brand: "NOCO",
+        compatibility: ["Universal"]
+    }
+];
