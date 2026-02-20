@@ -17,7 +17,7 @@ export default function CartPage() {
                 </div>
                 <h1 className="text-2xl font-bold text-gray-900 mb-2">Your cart is empty</h1>
                 <p className="text-gray-500 mb-8 max-w-md">
-                    Looks like you haven't added any parts to your cart yet. Browse our catalog to find what you need.
+                    Looks like you haven&apos;t added any parts to your cart yet. Browse our catalog to find what you need.
                 </p>
                 <Link href="/catalog">
                     <Button className="font-bold bg-[#e31e24] hover:bg-red-700 text-white px-8">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useMemo } from 'react';
 
 interface SiteSettings {
     storeName: string;
@@ -34,7 +34,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
             try {
                 const saved = localStorage.getItem('site-settings');
                 return saved ? { ...defaultSettings, ...JSON.parse(saved) } : defaultSettings;
-            } catch (e) {
+            } catch (error) {
                 return defaultSettings;
             }
         }
