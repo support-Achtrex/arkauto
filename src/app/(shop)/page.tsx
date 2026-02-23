@@ -7,248 +7,184 @@ import { useProducts } from '@/context/ProductContext';
 import ProductCard from '@/components/ui/ProductCard';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ShieldCheck, Truck, Wrench, ArrowRight } from 'lucide-react';
+import { ShieldCheck, Truck, Wrench, ArrowRight, Star, ThumbsUp, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 export default function Home() {
   const { products } = useProducts();
 
-  const benefits = [
-    { title: 'Genuine Parts', text: '100% original manufacturer parts', icon: ShieldCheck },
-    { title: 'Fast Delivery', text: 'Shipping across Ghana', icon: Truck },
-    { title: 'Expert Support', text: 'Technical assistance available', icon: Wrench },
-  ];
-
   return (
-    <div className="bg-gray-50 min-h-screen">
-      {/* Hero Section with Video Background */}
-      <section className="relative h-[600px] flex items-center overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src="/hero-video.mp4" type="video/mp4" />
-        </video>
+    <div className="bg-[#f8f8f8] min-h-screen">
 
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/70 z-10"></div>
+      {/* 1. Split Hero Section (CARiD Style) */}
+      <section className="bg-white border-b border-gray-200">
+        <div className="container mx-auto px-4 md:px-6 py-6 lg:py-8">
+          <div className="flex flex-col lg:flex-row gap-6">
 
-        <div className="container mx-auto px-4 md:px-6 relative z-20 text-white pb-20">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-black mb-6 tracking-tight uppercase italic">
-              Premium Auto Parts<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-[#e31e24]">Across Ghana</span>
-            </h1>
-            <p className="text-xl text-gray-200 mb-10 max-w-2xl font-medium leading-relaxed opacity-90">
-              The nation's most trusted global parts bridge. Source 100% genuine components with expert technical verification.
-            </p>
-            <div className="flex flex-wrap gap-5">
-              <Link href="/catalog">
-                <Button size="lg" className="h-auto py-5 px-10 rounded-2xl font-black uppercase tracking-widest text-xs bg-[#e31e24] hover:bg-white hover:text-black border-none text-white shadow-2xl shadow-red-500/40 transition-all active:scale-95">
-                  Browse Catalog
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button size="lg" variant="outline" className="h-auto py-5 px-10 rounded-2xl text-white border-2 border-white/20 hover:bg-white hover:text-black font-black uppercase tracking-widest text-xs backdrop-blur-md transition-all active:scale-95">
-                  Technical Support
-                </Button>
-              </Link>
+            {/* Left Box: Vehicle Selector (My Garage) */}
+            <div className="w-full lg:w-[420px] shrink-0 bg-[#111111] rounded-lg shadow-xl border border-gray-800 flex flex-col overflow-hidden relative z-10">
+              <div className="bg-[#e31e24] p-5 text-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-16 h-16 bg-white opacity-10 rotate-45 transform translate-x-8 -translate-y-8" />
+                <h2 className="text-white font-black uppercase text-[22px] tracking-tight leading-none mb-1">Select Your Vehicle</h2>
+                <p className="text-red-100 text-xs font-bold tracking-widest uppercase">To Find Exact Fit Parts</p>
+              </div>
+              <div className="p-6 flex-1 bg-gradient-to-b from-[#1a1a1a] to-[#111111]">
+                <VehicleSelector />
+              </div>
+            </div>
+
+            {/* Right Box: Hero Banner */}
+            <div className="flex-1 rounded-lg overflow-hidden relative shadow-md bg-gray-900 min-h-[400px]">
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#111111_0%,transparent_100%)] z-10"></div>
+
+              {/* Fallback abstract background if no image */}
+              <div className="absolute inset-0 bg-[#111] mix-blend-overlay"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#111111] via-[#331111] to-[#e31e24]/40 opacity-50 block mix-blend-color-dodge"></div>
+
+              <div className="relative z-20 h-full flex flex-col justify-center p-8 lg:p-14">
+                <div className="inline-block px-3 py-1 mb-6 border-2 border-[#e31e24] text-[#e31e24] font-black text-xs uppercase tracking-widest rounded">Factory Direct</div>
+                <h1 className="text-5xl md:text-6xl font-black text-white italic uppercase tracking-tighter mb-4 leading-none">
+                  Unleash Your <br /> <span className="text-[#e31e24]">Performance</span>
+                </h1>
+                <p className="text-gray-300 text-lg mb-8 max-w-md font-medium">Browse massive inventory of parts engineered for perfect fitment, extreme durability, and ultimate power.</p>
+                <div className="flex gap-4">
+                  <Link href="/catalog">
+                    <Button className="bg-[#e31e24] hover:bg-red-700 text-white px-8 py-6 rounded font-black uppercase tracking-widest text-sm transition-all shadow-lg shadow-red-500/30">
+                      Shop Top Parts
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Utilitarian Trust Bar */}
+      <section className="bg-white border-b border-gray-200 shadow-sm relative z-0">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-gray-100 py-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 px-4 group cursor-pointer hover:bg-gray-50 transition-colors rounded">
+              <CheckCircle className="w-8 h-8 text-[#e31e24] group-hover:scale-110 transition-transform" />
+              <div className="text-center sm:text-left">
+                <h3 className="font-bold text-gray-900 uppercase text-sm tracking-tight pt-1">Guaranteed Fit</h3>
+                <p className="text-[11px] text-gray-500">100% Accurate Selection</p>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 px-4 group cursor-pointer hover:bg-gray-50 transition-colors rounded">
+              <Truck className="w-8 h-8 text-[#e31e24] group-hover:scale-110 transition-transform" />
+              <div className="text-center sm:text-left">
+                <h3 className="font-bold text-gray-900 uppercase text-sm tracking-tight pt-1">Fast Shipping</h3>
+                <p className="text-[11px] text-gray-500">Express Delivery Nationwide</p>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 px-4 group cursor-pointer hover:bg-gray-50 transition-colors rounded">
+              <ShieldCheck className="w-8 h-8 text-[#e31e24] group-hover:scale-110 transition-transform" />
+              <div className="text-center sm:text-left">
+                <h3 className="font-bold text-gray-900 uppercase text-sm tracking-tight pt-1">Authorized Dealer</h3>
+                <p className="text-[11px] text-gray-500">Genuine OEM & Aftermarket</p>
+              </div>
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 px-4 group cursor-pointer hover:bg-gray-50 transition-colors rounded">
+              <ThumbsUp className="w-8 h-8 text-[#e31e24] group-hover:scale-110 transition-transform" />
+              <div className="text-center sm:text-left">
+                <h3 className="font-bold text-gray-900 uppercase text-sm tracking-tight pt-1">Easy Returns</h3>
+                <p className="text-[11px] text-gray-500">Hassle-free 30 Days Policy</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Vehicle Selector (Overlapping Hero) */}
-      <div className="container mx-auto px-4 md:px-6 relative z-30">
-        <VehicleSelector />
+      {/* 3. Shop by Department (Using FeaturedCategories if adapted, or wrapping it) */}
+      <div className="my-10">
+        <FeaturedCategories />
       </div>
 
-      {/* USP Bar */}
-      <section className="bg-white border-b border-gray-100 py-10 shadow-sm relative z-10">
+      {/* 4. Dense Featured Products Grid (Similar to CARiD's Best Sellers) */}
+      <section className="py-12 bg-white border-t border-b border-gray-200">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center lg:divide-x divide-gray-100">
-            <div className="flex flex-col items-center gap-4 group cursor-pointer p-4 rounded-3xl hover:bg-gray-50 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center group-hover:bg-[#e31e24] transition-all">
-                <Truck className="w-7 h-7 text-[#e31e24] group-hover:text-white transition-transform" />
-              </div>
-              <div>
-                <h3 className="font-black text-gray-900 uppercase tracking-tighter italic text-sm">Express Logistics</h3>
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">24h Intra-City Delivery</p>
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-4 group cursor-pointer p-4 rounded-3xl hover:bg-gray-50 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center group-hover:bg-[#e31e24] transition-all">
-                <ShieldCheck className="w-7 h-7 text-[#e31e24] group-hover:text-white transition-transform" />
-              </div>
-              <div>
-                <h3 className="font-black text-gray-900 uppercase tracking-tighter italic text-sm">Seal of Authenticity</h3>
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Manufacturer Certified</p>
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-4 group cursor-pointer p-4 rounded-3xl hover:bg-gray-50 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center group-hover:bg-[#e31e24] transition-all">
-                <Wrench className="w-7 h-7 text-[#e31e24] group-hover:text-white transition-transform" />
-              </div>
-              <div>
-                <h3 className="font-black text-gray-900 uppercase tracking-tighter italic text-sm">Parts Engineering</h3>
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Free Technical Audit</p>
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-4 group cursor-pointer p-4 rounded-3xl hover:bg-gray-50 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center group-hover:bg-[#e31e24] transition-all">
-                <span className="text-[#e31e24] font-black text-2xl group-hover:text-white transition-transform">30</span>
-              </div>
-              <div>
-                <h3 className="font-black text-gray-900 uppercase tracking-tighter italic text-sm">Hassle-Free Returns</h3>
-                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Ghana-Wide Policy</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Categories (Bento Grid) */}
-      <FeaturedCategories />
-
-      {/* Featured Products from New Database */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight uppercase italic">Featured <span className="text-[#e31e24]">Inventory</span></h2>
-              <p className="text-gray-400 mt-2 font-bold uppercase tracking-widest text-[10px]">Real-time Global Stock Levels • Updated Hourly</p>
-            </div>
-            <Link href="/catalog" className="flex items-center gap-2 text-[#e31e24] font-black uppercase tracking-widest text-xs hover:translate-x-2 transition-transform">
-              Digital Showroom <ArrowRight className="w-5 h-5" />
+          <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 border-b-2 border-gray-100 pb-4">
+            <h2 className="text-3xl font-black text-gray-900 uppercase tracking-tighter italic flex items-center gap-3">
+              <span className="w-2 h-8 bg-[#e31e24] block"></span>
+              Top Selling <span className="text-[#e31e24]">Parts</span>
+            </h2>
+            <Link href="/catalog" className="mt-4 md:mt-0 text-sm font-bold text-gray-600 hover:text-[#e31e24] uppercase tracking-wider flex items-center gap-1 transition-colors">
+              View All Products <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-16">
-            {products.filter(p => (p.rating || 5) >= 4.5).slice(0, 8).map(product => (
-              <ProductCard key={product.id} product={product} />
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {products.filter(p => (p.rating || 5) >= 4.5).slice(0, 10).map(product => (
+              <div key={product.id} className="border border-gray-200 hover:border-[#e31e24] hover:shadow-lg transition-all rounded bg-white p-3 flex flex-col group">
+                <div className="w-full aspect-square bg-gray-50 rounded mb-3 flex items-center justify-center p-4 relative">
+                  <span className="text-4xl font-bold text-gray-200 uppercase">{product.category.slice(0, 2)}</span>
+                  {product.rating && product.rating >= 4.8 && (
+                    <div className="absolute top-2 left-2 bg-yellow-400 text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow flex items-center gap-1">
+                      <Star className="w-3 h-3 fill-current" /> BEST SELLER
+                    </div>
+                  )}
+                </div>
+                <div className="flex-1 flex flex-col justify-between">
+                  <div>
+                    <Link href={`/product/${product.id}`} className="text-[#0055aa] hover:text-[#e31e24] hover:underline text-sm font-semibold line-clamp-2 leading-tight mb-2">
+                      {product.name}
+                    </Link>
+                    <div className="flex items-center gap-1 mb-2">
+                      <div className="flex text-yellow-400">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-3 h-3 fill-current" />
+                        ))}
+                      </div>
+                      <span className="text-gray-400 text-[10px] ml-1">({Math.floor(Math.random() * 200) + 15})</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
+                    <span className="font-black text-gray-900">GH₵{product.price.toFixed(2)}</span>
+                    <span className="text-[#e31e24] text-[10px] font-bold uppercase tracking-wider">In Stock</span>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-20 text-center">
-            <Link href="/catalog">
-              <Button size="lg" className="h-auto bg-gray-900 hover:bg-[#e31e24] text-white px-16 py-7 rounded-2xl font-black uppercase tracking-widest text-xs shadow-2xl hover:shadow-red-500/30 transition-all active:scale-95">
-                Explore 10,000+ Parts Catalog
-              </Button>
-            </Link>
+      {/* 5. Brands Carousel Strip (Dense presentation) */}
+      <section className="py-8 bg-gray-100">
+        <div className="container mx-auto px-4 md:px-6">
+          <h3 className="text-center font-bold text-gray-500 uppercase tracking-widest text-xs mb-6">Explore Our Premium Brand Selection</h3>
+          <div className="grid grid-cols-3 md:grid-cols-6 items-center justify-items-center gap-6 md:gap-12 opacity-70">
+            <Image src="/brands/toyota.svg" alt="Toyota" width={80} height={40} className="h-8 w-auto grayscale hover:grayscale-0 transition-all cursor-pointer" />
+            <Image src="/brands/honda.svg" alt="Honda" width={80} height={40} className="h-8 w-auto grayscale hover:grayscale-0 transition-all cursor-pointer" />
+            <Image src="/brands/bosch.svg" alt="Bosch" width={80} height={40} className="h-8 w-auto grayscale hover:grayscale-0 transition-all cursor-pointer" />
+            <Image src="/brands/denso.svg" alt="Denso" width={80} height={40} className="h-8 w-auto grayscale hover:grayscale-0 transition-all cursor-pointer" />
+            <Image src="/brands/mobil1.svg" alt="Mobil 1" width={80} height={40} className="h-8 w-auto grayscale hover:grayscale-0 transition-all cursor-pointer" />
+            <Image src="/brands/ngk.svg" alt="NGK" width={80} height={40} className="h-8 w-auto grayscale hover:grayscale-0 transition-all cursor-pointer" />
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us Banner */}
-      <section className="bg-gray-900 py-24 relative overflow-hidden">
-        {/* Background Decorative Elements */}
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-[#e31e24] skew-x-[-20deg] translate-x-1/2 opacity-10"></div>
-        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-white/5 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
-
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2 text-center lg:text-left">
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase italic tracking-tight">
-                Why Shop at Ark<span className="text-[#e31e24]">Auto</span>?
-              </h2>
-              <p className="text-gray-400 text-lg mb-10 leading-relaxed font-medium">
-                We bridge the gap between global manufacturers and vehicle owners in Ghana. Our mission is to provide 100% genuine parts at competitive prices with unparalleled local support.
+      {/* SEO & Request Section */}
+      <section className="py-12 bg-white text-gray-600 text-[13px] border-t border-gray-200">
+        <div className="container mx-auto px-4 md:px-6 grid md:grid-cols-2 gap-12">
+          <div>
+            <h2 className="font-black text-gray-900 mb-4 uppercase text-lg">Your Trusted Auto Parts Source in Ghana</h2>
+            <div className="space-y-4 leading-relaxed">
+              <p>
+                From performance upgrades to essential maintenance components, ArkAuto offers an unparalleled selection of premium auto parts tailored for the Ghanaian market. Our extensive catalog uses advanced fitment data to ensure that when you enter your Year, Make, and Model, the parts displayed are guaranteed to fit perfectly.
               </p>
-              <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
-                <div className="flex items-center gap-4 group cursor-default">
-                  <div className="w-12 h-12 rounded-full border border-gray-700 flex items-center justify-center text-[#e31e24] group-hover:bg-[#e31e24] group-hover:text-white transition-all">
-                    <ShieldCheck className="h-6 w-6" />
-                  </div>
-                  <span className="text-white font-bold uppercase tracking-widest text-xs">Certified Genuine</span>
-                </div>
-                <div className="flex items-center gap-4 group cursor-default">
-                  <div className="w-12 h-12 rounded-full border border-gray-700 flex items-center justify-center text-[#e31e24] group-hover:bg-[#e31e24] group-hover:text-white transition-all">
-                    <Truck className="h-6 w-6" />
-                  </div>
-                  <span className="text-white font-bold uppercase tracking-widest text-xs">Express Ghana Shipping</span>
-                </div>
-              </div>
+              <p>
+                We partner directly with leading OEM and aftermarket manufacturers globally, stripping away the middleman to provide you with the most competitive pricing alongside comprehensive technical support. Experience the power of our state-of-the-art catalog engine today.
+              </p>
             </div>
-
-            <div className="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl group hover:border-[#e31e24]/50 transition-all">
-                <div className="text-5xl font-black text-[#e31e24] mb-2 font-mono group-hover:scale-110 transition-transform origin-left">10k+</div>
-                <div className="text-white font-black uppercase tracking-widest text-sm mb-2">Parts Catalog</div>
-                <div className="text-gray-500 text-xs font-medium">Covering 95% of vehicle models in the Ghanaian market.</div>
-              </div>
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl group hover:border-[#e31e24]/50 transition-all">
-                <div className="text-5xl font-black text-[#e31e24] mb-2 font-mono group-hover:scale-110 transition-transform origin-left">24h</div>
-                <div className="text-white font-black uppercase tracking-widest text-sm mb-2">Order Processing</div>
-                <div className="text-gray-500 text-xs font-medium">From checkout to dispatch in under a day.</div>
-              </div>
-              <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-3xl group hover:border-[#e31e24]/50 transition-all">
-                <div className="text-5xl font-black text-[#e31e24] mb-2 font-mono group-hover:scale-110 transition-transform origin-left">4.9</div>
-                <div className="text-white font-black uppercase tracking-widest text-sm mb-2">User Experience</div>
-                <div className="text-gray-500 text-xs font-medium">Average rating from over 5,000 verified Ghanaian customers.</div>
-              </div>
-              <div className="bg-[#e31e24] p-8 rounded-3xl shadow-2xl shadow-red-900/20 flex flex-col justify-center items-center text-center group cursor-pointer active:scale-95 transition-all">
-                <p className="text-white font-black uppercase tracking-widest text-xs mb-4">Start Shopping Now</p>
-                <Link href="/catalog" className="text-white font-black italic text-2xl group-hover:underline flex items-center gap-2">
-                  GO TO SHOP <ArrowRight className="h-6 w-6" />
-                </Link>
-              </div>
-            </div>
+          </div>
+          <div>
+            <RequestPartForm />
           </div>
         </div>
       </section>
-
-      {/* Featured Brands - Scrolling */}
-      <section className="py-16 bg-white border-b border-gray-100">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 border-l-4 border-[#e31e24] pl-4">Premium Brands</h2>
-            <Link href="/brands" className="text-sm font-bold text-[#e31e24] hover:underline flex items-center gap-1">
-              View All <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
-            {/* Reusing existing brand images */}
-            <div className="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
-              <Image src="/brands/toyota.svg" alt="Toyota" width={100} height={50} className="h-10 w-auto object-contain" />
-            </div>
-            <div className="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
-              <Image src="/brands/honda.svg" alt="Honda" width={100} height={50} className="h-10 w-auto object-contain" />
-            </div>
-            <div className="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
-              <Image src="/brands/bosch.svg" alt="Bosch" width={100} height={50} className="h-10 w-auto object-contain" />
-            </div>
-            <div className="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
-              <Image src="/brands/denso.svg" alt="Denso" width={100} height={50} className="h-10 w-auto object-contain" />
-            </div>
-            <div className="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
-              <Image src="/brands/mobil1.svg" alt="Mobil 1" width={100} height={50} className="h-10 w-auto object-contain" />
-            </div>
-            <div className="grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
-              <Image src="/brands/ngk.svg" alt="NGK" width={100} height={50} className="h-10 w-auto object-contain" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SEO Text Footer */}
-      <section className="py-12 bg-gray-100 text-gray-600 text-sm leading-relaxed">
-        <div className="container mx-auto px-4 md:px-6">
-          <h2 className="font-bold text-gray-900 mb-4">Car Parts Online Shop - ArkAuto Ghana</h2>
-          <p className="mb-4">
-            Maintaining your vehicle is essential for safety and longevity. At ArkAuto, we understand the importance of quality, which is why we only stock genuine parts from the world's most trusted manufacturers. Whether you are looking for brake pads, spark plugs, motor oil, or suspension components, our extensive catalog covers all major makes and models found in Ghana.
-          </p>
-          <p>
-            Our user-friendly platform allows you to find the exact part you need by simply selecting your vehicle make, model, and year. With our fast delivery network across Accra and beyond, you can get back on the road sooner. Trust ArkAuto for all your automotive maintenance needs.
-          </p>
-        </div>
-      </section>
-
-      {/* Request Part Form */}
-      <RequestPartForm />
     </div>
   );
 }
